@@ -21,23 +21,29 @@ namespace SudukoSolver
             
             for (int row = 0; row < puzzle.GetLength(0); row++)
             {
+                Console.WriteLine("+-----------+-----------+-----------+");
+                Console.Write("| ");
                 for (int col = 0; col < puzzle.GetLength(1); col++)
                 {
+                   
                     if (text[index].Equals('0'))
                     {
                         puzzle[row, col] = '-';
+                        Console.Write(puzzle[row,col] + " | ");
                     }
-
+                    
                     else
                     {
                         puzzle[row, col] = text[index];
+                        Console.Write(puzzle[row, col] + " | ");
                     }
-
                     index++;
                 }
+                Console.WriteLine();
             }
+            Console.WriteLine("+-----------+-----------+-----------+");
 
-            
+
         }
     }
 }
