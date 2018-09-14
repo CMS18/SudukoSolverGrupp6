@@ -23,14 +23,17 @@ namespace SudukoSolver
             {
                 for (int col = 0; col < puzzle.GetLength(1); col++)
                 {
-                    if (text[index].Equals('0'))
+                    Console.WriteLine("|");
+                    if (text[index].Equals('0')) 
                     {
-                        puzzle[row, col] = '-';
+                        puzzle[row, col] = '–';
+                        
                     }
 
                     else
                     {
                         puzzle[row, col] = text[index];
+                        Console.Write(puzzle(row, col);
                     }
 
                     index++;
