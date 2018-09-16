@@ -10,13 +10,12 @@ using Char = System.Char;
 
 namespace SudukoSolver
 {
-    public class SudukoMetohds
+    public class Suduko
     {
         char[,] puzzle = new Char[9, 9];
 
-        public SudukoMetohds (string text)
+        public Suduko (string text)
         {
-          
             int index = 0;
             
             for (int row = 0; row < puzzle.GetLength(0); row++)
