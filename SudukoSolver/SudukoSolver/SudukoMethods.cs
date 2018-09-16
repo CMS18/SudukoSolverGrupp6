@@ -46,9 +46,16 @@ namespace SudukoSolver
         /**
          * Returnerar true/false om talet finns i raden.
          */
-        private void FindInRow(int number, int row)
+        private bool FindInRow(char number, int row)
         {
-            
+            for (int col = 0; col < puzzle.GetLength(1); col++)
+            {
+                if (number == puzzle[row,col])
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /**
