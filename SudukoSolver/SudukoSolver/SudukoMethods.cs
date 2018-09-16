@@ -41,38 +41,53 @@ namespace SudukoSolver
                 Console.WriteLine();
             }
             Console.WriteLine("+-----------+-----------+-----------+");
-
-
         }
 
         /**
          * Returnerar true/false om talet finns i raden.
          */
-        public void FindInRow(int number, int row)
+        private void FindInRow(int number, int row)
         {
-
+            
         }
 
         /**
          * Returnerar true/false om talet finns i kolumnen.
          */
-        public void FindInCol(int number, int col)
+        private bool FindInCol(char number, int col)
         {
-
+            for (int row = 0; row < puzzle.GetLength(1); row++)
+            {
+                if (number == puzzle[row,col])
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /**
          * Kontrollerar om sudokut är klart.
          */
-        public void CheckIfComplete()
+        private bool CheckIfComplete()
         {
-
+            for (int row = 0; row < puzzle.GetLength(0); row++)
+            {
+                for (int col = 0; col < puzzle.GetLength(1); col++)
+                {
+                    if (puzzle[row,col] != 45)
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
         /**
          * Returnerar en lista med siffror som redan finns i boxen.
          */
-        public void GetNumbersInBox()
+        private void GetNumbersInBox()
         {
 
         }
@@ -80,7 +95,7 @@ namespace SudukoSolver
         /**
          * Returnerar en lista med alla tal som skulle kunna vara i positionen.
          */
-        public void GetInputNumbers()
+        private void GetInputNumbers()
         {
 
         }
