@@ -11,7 +11,7 @@ namespace SudukoSolver
         static void Main(string[] args)
         {
             
-            SudukoMetohds game = new SudukoMetohds("003020600900305001001806400" +
+            Suduko game = new Suduko("003020600900305001001806400" +
                                                    "008102900700000008006708200" +
                                                    "002609500800203009005010300");
            

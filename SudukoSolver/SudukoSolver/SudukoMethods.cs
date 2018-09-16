@@ -10,13 +10,12 @@ using Char = System.Char;
 
 namespace SudukoSolver
 {
-    public class SudukoMetohds
+    public class Suduko
     {
         char[,] puzzle = new Char[9, 9];
 
-        public SudukoMetohds (string text)
+        public Suduko (string text)
         {
-          
             int index = 0;
             
             for (int row = 0; row < puzzle.GetLength(0); row++)
@@ -44,7 +43,47 @@ namespace SudukoSolver
             
         }
 
-           
+
+        }
+
+        /**
+         * Returnerar true/false om talet finns i raden.
+         */
+        public void FindInRow(int number, int row)
+        {
+
+        }
+
+        /**
+         * Returnerar true/false om talet finns i kolumnen.
+         */
+        public void FindInCol(int number, int col)
+        {
+
+        }
+
+        /**
+         * Kontrollerar om sudokut är klart.
+         */
+        public void CheckIfComplete()
+        {
+
+        }
+
+        /**
+         * Returnerar en lista med siffror som redan finns i boxen.
+         */
+        public void GetNumbersInBox()
+        {
+
+        }
+
+        /**
+         * Returnerar en lista med alla tal som skulle kunna vara i positionen.
+         */
+        public void GetInputNumbers()
+        {
+
+        }
     }
 }
-
