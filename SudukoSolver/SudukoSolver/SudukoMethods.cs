@@ -41,9 +41,10 @@ namespace SudukoSolver
                 }
                 Console.WriteLine();
             }
-            Console.WriteLine("+-----------+-----------+-----------+");
-
-
+            
         }
+
+           
     }
 }
+
