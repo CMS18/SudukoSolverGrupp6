@@ -6,7 +6,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
-using Char = System.Char;
+
 
 namespace SudukoSolver
 {
@@ -84,12 +84,25 @@ namespace SudukoSolver
             return true;
         }
 
-        /**
-         * Returnerar en lista med siffror som redan finns i boxen.
-         */
-        private void GetNumbersInBox()
+        private List<char> FindNumbers(int startY, int stopY, int startX, int stopX)
         {
+            
+        }
+        
+        
+         /*Returnerar en lista med siffror som redan finns i boxen*/
+         
+        private List<char> GetNumbersInBox(int y, int x)
+        {
+            List <char> numbersInBox = new List<char>();
+            int boxLength = 3;
+            int endValue = puzzle.GetLength(0) / boxLength;
+            int startY = y / boxLength;
+            startY = startY * boxLength;
+            int startX = x / boxLength;
+            startX = startX * boxLength;
 
+            return numbersInBox;
         }
 
         /**
