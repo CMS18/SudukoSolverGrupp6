@@ -14,23 +14,23 @@ namespace SudukoSolver
     {
         char[,] puzzle = new Char[9, 9];
 
-        public Suduko (string text)
+        public Suduko(string text)
         {
             int index = 0;
-            
+
             for (int row = 0; row < puzzle.GetLength(0); row++)
             {
                 Console.WriteLine("+-----------+-----------+-----------+");
                 Console.Write("| ");
                 for (int col = 0; col < puzzle.GetLength(1); col++)
                 {
-                   
+
                     if (text[index].Equals('0'))
                     {
                         puzzle[row, col] = '-';
-                        Console.Write(puzzle[row,col] + " | ");
+                        Console.Write(puzzle[row, col] + " | ");
                     }
-                    
+
                     else
                     {
                         puzzle[row, col] = text[index];
@@ -40,19 +40,19 @@ namespace SudukoSolver
                 }
                 Console.WriteLine();
             }
-            
-        }
-
 
         }
 
-        /**
-         * Returnerar true/false om talet finns i raden.
-         */
-        public void FindInRow(int number, int row)
+
+    }
+
+    /**
+     * Returnerar true/false om talet finns i raden.
+     */
+    public void FindInRow(int number, int row)
+        
+         for (int row = 0; row< 9; row++)
         {
-
-        }
 
         /**
          * Returnerar true/false om talet finns i kolumnen.
