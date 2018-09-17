@@ -16,6 +16,7 @@ namespace SudukoSolver
                                      "002609500800203009005010300");
             game.EasySudokuSolver();
             game.PrintPuzzle(game.puzzle);
+            Console.ReadKey();
            
         }
 

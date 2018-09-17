@@ -88,9 +88,10 @@ namespace SudukoSolver
          */
         public bool CheckIfComplete()
         {
-            int totalRow = 0;
+            int totalRow;
             for (int row = 0; row < puzzle.GetLength(0); row++)
             {
+                totalRow = 0;
                 for (int col = 0; col < puzzle.GetLength(1); col++)
                 {
                     totalRow += (int)Char.GetNumericValue(puzzle[row, col]);
@@ -100,7 +101,7 @@ namespace SudukoSolver
                 {
                     return false;
                 }
-                totalRow = 0;
+                
             }
             return true;
         }
@@ -108,9 +109,9 @@ namespace SudukoSolver
         public List<char> FindNumbers(int startY, int stopY, int startX, int stopX)
         {
             List<char> boxContains = new List<char>();
-            for(int rows = startY; startY < stopY; startY++)
+            for(int rows = startY; rows < stopY; rows++)
             {
-                for(int cols = startX; startX < stopX; startX++)
+                for(int cols = startX; cols < stopX; cols++)
                 {
                     if (!puzzle[rows, cols].Equals('-'))
                     {
@@ -147,8 +148,8 @@ namespace SudukoSolver
             boxContains = GetNumbersInBox(y, x);
             for (int testValue = 1; testValue < 10; testValue++)
             {
-                
                 string tempValue = testValue.ToString();
+                
                 if (!FindInRow(tempValue[0], y) && !FindInCol(tempValue[0], x) && !boxContains.Contains(tempValue[0]))
                 {
                     inputNumbers.Add(tempValue[0]);
@@ -176,15 +177,17 @@ namespace SudukoSolver
                 {
                     for(int cols = 0; cols <= puzzle.GetUpperBound(1); cols++)
                     {
-                        boxContains = GetNumbersInBox(rows, cols);
                         inputNumbers = GetInputNumbers(rows, cols);
-                        if(puzzle[rows, cols].Equals('-') && (inputNumbers.Count == 1))
+                        boxContains = GetNumbersInBox(rows, cols);
+                        
+                        
+                        if (puzzle[rows, cols].Equals('-') && (inputNumbers.Count == 1))
                         {
-                            PrintPuzzle(puzzle);
                             puzzle[rows, cols] = inputNumbers.ElementAt(0);
                         }
                         boxContains.Clear();
                         inputNumbers.Clear();
+                        
                     }
                 }
             }
