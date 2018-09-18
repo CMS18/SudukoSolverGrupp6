@@ -8,6 +8,8 @@ namespace SudukoSolver
     {
         public char[,] puzzle = new char[9, 9];
         public int valueTested = 0;
+        public DateTime start;
+        public DateTime stop;
 
         public Sudoku(string text)
         {
@@ -160,7 +162,7 @@ namespace SudukoSolver
                     inputNumbers.Clear();
                 }
             }
-
+            start = DateTime.Now;
             RecursionSolve();
         }
 
@@ -184,6 +186,9 @@ namespace SudukoSolver
                             Console.WriteLine();
                             Console.WriteLine("***********SOLUTION FOUND!***********");
                             Console.WriteLine("Tested: " + valueTested + " numbers.");
+                            stop = DateTime.Now;
+                            TimeSpan totalTime = stop - start;
+                            Console.WriteLine("Sudoku solved in: " + totalTime);
                             Console.ReadLine();
                             Environment.Exit(0);
                         }
