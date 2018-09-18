@@ -7,6 +7,7 @@ namespace SudukoSolver
     public class Sudoku
     {
         public char[,] puzzle = new char[9, 9];
+        public int valueTested = 0;
 
         public Sudoku(string text)
         {
@@ -174,7 +175,7 @@ namespace SudukoSolver
                 if (inputNumber.Contains(tempValue[0]))
                 {
                     puzzle[y, x] = tempValue[0];
-
+                    valueTested++;
                     if (RecursionSolve())
                     {
                         if (CheckIfComplete())
@@ -182,6 +183,7 @@ namespace SudukoSolver
                             PrintPuzzle(puzzle);
                             Console.WriteLine();
                             Console.WriteLine("***********SOLUTION FOUND!***********");
+                            Console.WriteLine("Tested: " + valueTested + " numbers.");
                             Console.ReadLine();
                             Environment.Exit(0);
                         }
