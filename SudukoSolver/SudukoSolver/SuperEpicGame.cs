@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
 
-namespace TestingWriteRead
+namespace SudukoSolver
 {
-    class Program
+    class Spel
     {
-        static void Main(string[] args)
-        {
-        }
     }
 }
