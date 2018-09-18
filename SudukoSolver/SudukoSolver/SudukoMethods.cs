@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace SudukoSolver
 {
-    public class Suduko
+    public class Sudoku
     {
         public char[,] puzzle = new char[9, 9];
         public char[,] completePuzzle = new char[9, 9];
 
-        public Suduko(string text)
+        public Sudoku(string text)
         {
             int index = 0;
             for (int row = 0; row < puzzle.GetLength(0); row++)
@@ -38,7 +38,10 @@ namespace SudukoSolver
             Console.WriteLine("+-----------+-----------+-----------+");
         }
 
-        public void PrintPuzzle(char[,] puzzle)
+        /**
+         * Prints the selected puzzle.
+         */
+        private void PrintPuzzle(char[,] puzzle)
         {
             for(int rows = 0; rows <= puzzle.GetUpperBound(0); rows++)
             {
@@ -56,7 +59,7 @@ namespace SudukoSolver
         /**
          * Returnerar true/false om talet finns i raden.
          */
-        public bool FindInRow(char number, int row)
+        private bool FindInRow(char number, int row)
         {
             for (int col = 0; col <= puzzle.GetUpperBound(1); col++)
             {
@@ -71,7 +74,7 @@ namespace SudukoSolver
         /**
          * Returnerar true/false om talet finns i kolumnen.
          */
-        public bool FindInCol(char number, int col)
+        private bool FindInCol(char number, int col)
         {
             for (int row = 0; row <= puzzle.GetUpperBound(0); row++)
             {
@@ -86,7 +89,7 @@ namespace SudukoSolver
         /**
          * Kontrollerar om sudokut är klart.
          */
-        public bool CheckIfComplete()
+        private bool CheckIfComplete()
         {
             int totalRow;
             for (int row = 0; row < puzzle.GetLength(0); row++)
@@ -106,7 +109,10 @@ namespace SudukoSolver
             return true;
         }
 
-        public List<char> FindNumbers(int startY, int stopY, int startX, int stopX)
+        /**
+         * Collects the numbers in the selected 3x3 area.
+         */
+        private List<char> FindNumbers(int startY, int stopY, int startX, int stopX)
         {
             List<char> boxContains = new List<char>();
             for(int rows = startY; rows < stopY; rows++)
@@ -121,11 +127,12 @@ namespace SudukoSolver
             }
             return boxContains;
         }
-        
-        
-         /*Returnerar en lista med siffror som redan finns i boxen*/
-         
-        public List<char> GetNumbersInBox(int y, int x)
+
+
+        /**
+         * Returnerar en lista med siffror som redan finns i boxen.
+         */
+        private List<char> GetNumbersInBox(int y, int x)
         {
             List <char> numbersInBox = new List<char>();
             int boxLength = 3;
@@ -141,7 +148,7 @@ namespace SudukoSolver
         /**
          * Returnerar en lista med alla tal som skulle kunna vara i positionen.
          */
-        public List<char> GetInputNumbers(int y, int x)
+        private List<char> GetInputNumbers(int y, int x)
         {
             List<char> inputNumbers = new List<char>();
             List<char> boxContains = new List<char>();
@@ -161,15 +168,17 @@ namespace SudukoSolver
         /**
          * Easy sudokusolver.
          */
-        public void EasySudokuSolver()
+        public void Solve()
         {
-            List<char> boxContains = new List<char>();
+            
             List<char> inputNumbers = new List<char>();
             bool puzzleNotSolved = true;
             while (puzzleNotSolved)
             {
+                puzzleNotSolved = false;
                 if (CheckIfComplete())
                 {
+                    PrintPuzzle(puzzle);
                     Console.WriteLine("Solution found!");
                     break;
                 }
@@ -178,19 +187,25 @@ namespace SudukoSolver
                     for(int cols = 0; cols <= puzzle.GetUpperBound(1); cols++)
                     {
                         inputNumbers = GetInputNumbers(rows, cols);
-                        boxContains = GetNumbersInBox(rows, cols);
-                        
                         
                         if (puzzle[rows, cols].Equals('-') && (inputNumbers.Count == 1))
                         {
                             puzzle[rows, cols] = inputNumbers.ElementAt(0);
+                            puzzleNotSolved = true;
                         }
-                        boxContains.Clear();
+                       
                         inputNumbers.Clear();
-                        
                     }
                 }
             }
+        }
+
+        /**
+         * Solves hard sudoku puzzles using mutual recursion searching for a solution using depth-first.
+         */
+         private bool RecursionSolve()
+        {
+            return true;
         }
     }
 }
