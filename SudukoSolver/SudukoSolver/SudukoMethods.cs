@@ -6,7 +6,10 @@ namespace SudukoSolver
 {
     public class Sudoku
     {
-        private char[,] puzzle = new char[9, 9];
+        public char[,] puzzle = new char[9, 9];
+        public int valueTested = 0;
+        public DateTime start;
+        public DateTime stop;
 
         public Sudoku(string text)
         {
@@ -159,7 +162,7 @@ namespace SudukoSolver
                     inputNumbers.Clear();
                 }
             }
-
+            start = DateTime.Now;
             RecursionSolve();
         }
 
@@ -174,7 +177,7 @@ namespace SudukoSolver
                 if (inputNumber.Contains(tempValue[0]))
                 {
                     puzzle[y, x] = tempValue[0];
-
+                    valueTested++;
                     if (RecursionSolve())
                     {
                         if (CheckIfComplete())
@@ -182,6 +185,10 @@ namespace SudukoSolver
                             PrintPuzzle(puzzle);
                             Console.WriteLine();
                             Console.WriteLine("***********SOLUTION FOUND!***********");
+                            Console.WriteLine("Tested: " + valueTested + " numbers.");
+                            stop = DateTime.Now;
+                            TimeSpan totalTime = stop - start;
+                            Console.WriteLine("Sudoku solved in: " + totalTime);
                             Console.ReadLine();
                             Environment.Exit(0);
                         }
