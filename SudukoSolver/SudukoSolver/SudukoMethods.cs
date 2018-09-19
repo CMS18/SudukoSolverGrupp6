@@ -6,7 +6,7 @@ namespace SudukoSolver
 {
     public class Sudoku
     {
-        public char[,] puzzle = new char[9, 9];
+        private char[,] puzzle = new char[9, 9];
 
         public Sudoku(string text)
         {
