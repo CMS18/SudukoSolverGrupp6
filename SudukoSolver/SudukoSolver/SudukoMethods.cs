@@ -52,22 +52,24 @@ namespace SudukoSolver
             }
 
             Console.WriteLine("+-----------+-----------+-----------+");
+            Console.WriteLine();
+            //Console.WriteLine("Tested value: " + valueTested);
         }
 
         /*Returnerar true/false om talet finns i raden.*/
-        private bool FindInRow(char number, int row)
+        private bool FindInRow(char number, int row, int x)
         {
             for (var col = 0; col <= puzzle.GetUpperBound(1); col++)
-                if (number == puzzle[row, col])
+                if (number == puzzle[row, col] && (x != col))
                     return true;
             return false;
         }
 
         /* Returnerar true/false om talet finns i kolumnen.*/
-        private bool FindInCol(char number, int col)
+        private bool FindInCol(char number, int col, int y)
         {
             for (var row = 0; row <= puzzle.GetUpperBound(0); row++)
-                if (number == puzzle[row, col])
+                if (number == puzzle[row, col] && (y != row))
                     return true;
 
             return false;
@@ -86,6 +88,30 @@ namespace SudukoSolver
             }
 
             return true;
+        }
+
+        /**
+         * Checks if the puzzle is valid or not.
+         */
+        private void ValidPuzzle()
+        {
+            bool validBoard = true;
+            for (int rows = 0; rows <= puzzle.GetUpperBound(0); rows++)
+            {
+                for (int cols = 0; cols <= puzzle.GetUpperBound(1); cols++)
+                {
+                    if (!puzzle[rows, cols].Equals('-') && (FindInRow(puzzle[rows, cols], rows, cols) || FindInCol(puzzle[rows, cols], cols, rows)))
+                    {
+                        validBoard = false;
+                    }
+                }
+            }
+            if (!validBoard)
+            {
+                Console.WriteLine("Invalid board..");
+                
+            }
+            
         }
 
         /* Collects the numbers in the selected 3x3 area.*/
@@ -125,7 +151,7 @@ namespace SudukoSolver
             {
                 var tempValue = testValue.ToString();
 
-                if (!FindInRow(tempValue[0], y) && !FindInCol(tempValue[0], x) && !boxContains.Contains(tempValue[0]))
+                if (!FindInRow(tempValue[0], y, x) && !FindInCol(tempValue[0], x, y) && !boxContains.Contains(tempValue[0]))
                     inputNumbers.Add(tempValue[0]);
             }
 
@@ -137,6 +163,7 @@ namespace SudukoSolver
         {
             var inputNumbers = new List<char>();
             var puzzleNotSolved = true;
+            ValidPuzzle();
             while (puzzleNotSolved)
             {
                 puzzleNotSolved = false;
@@ -171,13 +198,15 @@ namespace SudukoSolver
         {
             var inputNumber = new List<char>();
 
-            for (var testValue = 1; testValue < 10; testValue++)
+            for (var testValue = 9; testValue > 0; testValue--)
             {
                 inputNumber = GetInputNumbers(y, x);
                 var tempValue = testValue.ToString();
                 if (inputNumber.Contains(tempValue[0]))
                 {
                     puzzle[y, x] = tempValue[0];
+                    //Console.SetCursorPosition(0, 0);
+                    //PrintPuzzle(puzzle);
                     valueTested++;
                     if (RecursionSolve())
                     {
