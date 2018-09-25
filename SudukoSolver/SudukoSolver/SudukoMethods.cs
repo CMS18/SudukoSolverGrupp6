@@ -109,7 +109,8 @@ namespace SudukoSolver
             if (!validBoard)
             {
                 Console.WriteLine("Invalid board..");
-                
+                Console.ReadLine();
+                Environment.Exit(0);
             }
             
         }
