@@ -201,6 +201,8 @@ namespace SudukoSolver
 
             for (var testValue = 9; testValue > 0; testValue--)
             {
+            //for (var testValue = 1; testValue < 10; testValue++){
+             
                 inputNumber = GetInputNumbers(y, x);
                 var tempValue = testValue.ToString();
                 if (inputNumber.Contains(tempValue[0]))
