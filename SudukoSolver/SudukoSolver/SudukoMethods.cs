@@ -145,6 +145,7 @@ namespace SudukoSolver
                     PrintPuzzle(puzzle);
                     Console.WriteLine();
                     Console.WriteLine("***********SOLUTION FOUND!***********");
+                    
                     break;
                 }
 
