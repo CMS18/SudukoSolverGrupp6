@@ -168,15 +168,6 @@ namespace SudukoSolver
             while (puzzleNotSolved)
             {
                 puzzleNotSolved = false;
-                if (CheckIfComplete())
-                {
-                    PrintPuzzle(puzzle);
-                    Console.WriteLine();
-                    Console.WriteLine("***********SOLUTION FOUND!***********");
-                    
-                    break;
-                }
-
                 for (var rows = 0; rows <= puzzle.GetUpperBound(0); rows++)
                 for (var cols = 0; cols <= puzzle.GetUpperBound(1); cols++)
                 {
@@ -190,9 +181,19 @@ namespace SudukoSolver
 
                     inputNumbers.Clear();
                 }
+                
+            }
+            if (CheckIfComplete())
+            {
+                PrintPuzzle(puzzle);
+                Console.WriteLine();
+                Console.WriteLine("***********SOLUTION FOUND!***********");
+                Console.ReadLine();
+                Environment.Exit(0); ;
             }
             start = DateTime.Now;
             RecursionSolve();
+            Console.WriteLine("No solution found.");
         }
 
         private bool GuessNumber(int y, int x, char[,] puzzle)
